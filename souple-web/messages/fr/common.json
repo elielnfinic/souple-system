@@ -1,0 +1,104 @@
+{
+  "nav": {
+    "dashboard": "Tableau de bord",
+    "trips": "Voyages",
+    "bookings": "Réservations",
+    "fleet": "Flotte",
+    "payments": "Paiements",
+    "reports": "Rapports",
+    "users": "Utilisateurs",
+    "organizations": "Organisations",
+    "routes": "Itinéraires",
+    "notifications": "Notifications",
+    "security": "Sécurité",
+    "settings": "Paramètres"
+  },
+  "auth": {
+    "login": "Connexion",
+    "logout": "Déconnexion",
+    "register": "Inscription",
+    "phone": "Numéro de téléphone",
+    "email": "Adresse e-mail",
+    "password": "Mot de passe",
+    "otp_code": "Code de vérification",
+    "send_otp": "Envoyer le code",
+    "resend_otp": "Renvoyer le code",
+    "verify": "Vérifier",
+    "login_title": "Connexion à Souple",
+    "login_subtitle": "Entrez votre numéro de téléphone pour recevoir un code de vérification",
+    "register_title": "Créer un compte",
+    "otp_title": "Vérification",
+    "otp_subtitle": "Entrez le code à 6 chiffres envoyé au {phone}",
+    "otp_expires": "Le code expire dans {minutes} minutes",
+    "first_name": "Prénom",
+    "last_name": "Nom de famille",
+    "no_account": "Pas encore de compte ?",
+    "have_account": "Déjà un compte ?"
+  },
+  "actions": {
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "delete": "Supprimer",
+    "edit": "Modifier",
+    "create": "Créer",
+    "add": "Ajouter",
+    "remove": "Retirer",
+    "confirm": "Confirmer",
+    "back": "Retour",
+    "next": "Suivant",
+    "view": "Voir",
+    "close": "Fermer",
+    "search": "Rechercher",
+    "filter": "Filtrer",
+    "export": "Exporter",
+    "print": "Imprimer",
+    "refresh": "Actualiser",
+    "retry": "Réessayer"
+  },
+  "status": {
+    "scheduled": "Programmé",
+    "boarding": "Embarquement",
+    "departed": "En route",
+    "arrived": "Arrivé",
+    "completed": "Terminé",
+    "cancelled": "Annulé",
+    "pending": "En attente",
+    "confirmed": "Confirmé",
+    "checked_in": "Embarqué",
+    "refunded": "Remboursé",
+    "processing": "En cours",
+    "failed": "Échoué",
+    "active": "Actif",
+    "inactive": "Inactif",
+    "maintenance": "Maintenance"
+  },
+  "pagination": {
+    "page": "Page {page} sur {total}",
+    "per_page": "{count} par page",
+    "showing": "Affichage de {from} à {to} sur {total} résultats"
+  },
+  "errors": {
+    "not_found": "Ressource introuvable",
+    "unauthorized": "Authentification requise",
+    "forbidden": "Accès refusé",
+    "server_error": "Une erreur inattendue s'est produite. Veuillez réessayer.",
+    "network_error": "Vérifiez votre connexion internet et réessayez.",
+    "session_expired": "Votre session a expiré. Veuillez vous reconnecter."
+  },
+  "empty": {
+    "no_results": "Aucun résultat",
+    "no_results_desc": "Essayez de modifier vos filtres ou termes de recherche.",
+    "clear_filters": "Effacer les filtres"
+  },
+  "currency": {
+    "cdf": "FC",
+    "usd": "$",
+    "eur": "€"
+  },
+  "time": {
+    "just_now": "À l'instant",
+    "minutes_ago": "{count, plural, =1 {il y a 1 minute} other {il y a # minutes}}",
+    "hours_ago": "{count, plural, =1 {il y a 1 heure} other {il y a # heures}}",
+    "days_ago": "{count, plural, =1 {il y a 1 jour} other {il y a # jours}}"
+  }
+}

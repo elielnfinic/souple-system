@@ -1,0 +1,104 @@
+{
+  "nav": {
+    "dashboard": "Dashboard",
+    "trips": "Trips",
+    "bookings": "Bookings",
+    "fleet": "Fleet",
+    "payments": "Payments",
+    "reports": "Reports",
+    "users": "Users",
+    "organizations": "Organizations",
+    "routes": "Routes",
+    "notifications": "Notifications",
+    "security": "Security",
+    "settings": "Settings"
+  },
+  "auth": {
+    "login": "Sign In",
+    "logout": "Sign Out",
+    "register": "Sign Up",
+    "phone": "Phone number",
+    "email": "Email address",
+    "password": "Password",
+    "otp_code": "Verification code",
+    "send_otp": "Send code",
+    "resend_otp": "Resend code",
+    "verify": "Verify",
+    "login_title": "Sign in to Souple",
+    "login_subtitle": "Enter your phone number to receive a verification code",
+    "register_title": "Create an account",
+    "otp_title": "Verification",
+    "otp_subtitle": "Enter the 6-digit code sent to {phone}",
+    "otp_expires": "Code expires in {minutes} minutes",
+    "first_name": "First name",
+    "last_name": "Last name",
+    "no_account": "Don't have an account?",
+    "have_account": "Already have an account?"
+  },
+  "actions": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "create": "Create",
+    "add": "Add",
+    "remove": "Remove",
+    "confirm": "Confirm",
+    "back": "Back",
+    "next": "Next",
+    "view": "View",
+    "close": "Close",
+    "search": "Search",
+    "filter": "Filter",
+    "export": "Export",
+    "print": "Print",
+    "refresh": "Refresh",
+    "retry": "Retry"
+  },
+  "status": {
+    "scheduled": "Scheduled",
+    "boarding": "Boarding",
+    "departed": "Departed",
+    "arrived": "Arrived",
+    "completed": "Completed",
+    "cancelled": "Cancelled",
+    "pending": "Pending",
+    "confirmed": "Confirmed",
+    "checked_in": "Checked In",
+    "refunded": "Refunded",
+    "processing": "Processing",
+    "failed": "Failed",
+    "active": "Active",
+    "inactive": "Inactive",
+    "maintenance": "Maintenance"
+  },
+  "pagination": {
+    "page": "Page {page} of {total}",
+    "per_page": "{count} per page",
+    "showing": "Showing {from} to {to} of {total} results"
+  },
+  "errors": {
+    "not_found": "Resource not found",
+    "unauthorized": "Authentication required",
+    "forbidden": "Access denied",
+    "server_error": "An unexpected error occurred. Please try again.",
+    "network_error": "Check your internet connection and try again.",
+    "session_expired": "Your session has expired. Please sign in again."
+  },
+  "empty": {
+    "no_results": "No results",
+    "no_results_desc": "Try adjusting your filters or search terms.",
+    "clear_filters": "Clear filters"
+  },
+  "currency": {
+    "cdf": "FC",
+    "usd": "$",
+    "eur": "€"
+  },
+  "time": {
+    "just_now": "Just now",
+    "minutes_ago": "{count, plural, =1 {1 minute ago} other {# minutes ago}}",
+    "hours_ago": "{count, plural, =1 {1 hour ago} other {# hours ago}}",
+    "days_ago": "{count, plural, =1 {1 day ago} other {# days ago}}"
+  }
+}

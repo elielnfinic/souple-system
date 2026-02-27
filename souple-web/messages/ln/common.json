@@ -1,0 +1,55 @@
+{
+  "nav": {
+    "dashboard": "Tableau de bord",
+    "trips": "Bampita",
+    "bookings": "Baréservation",
+    "fleet": "Bamonil",
+    "payments": "Babonzi",
+    "reports": "Baraporo",
+    "users": "Bato",
+    "organizations": "Baorganisation",
+    "routes": "Nzela",
+    "notifications": "Banotification",
+    "security": "Bobateli",
+    "settings": "Bapézé"
+  },
+  "auth": {
+    "login": "Kota",
+    "logout": "Bima",
+    "register": "Kokima",
+    "phone": "Numéro ya téléphone",
+    "email": "Adresse ya email",
+    "otp_code": "Code ya vérification",
+    "send_otp": "Tinda code",
+    "verify": "Vérifier",
+    "login_title": "Kota na Souple",
+    "first_name": "Nkombo ya liboso",
+    "last_name": "Nkombo ya liboso"
+  },
+  "actions": {
+    "save": "Bika",
+    "cancel": "Sila",
+    "delete": "Boma",
+    "edit": "Bongola",
+    "confirm": "Petela",
+    "back": "Zonga",
+    "next": "Eleka liboso",
+    "search": "Luka",
+    "retry": "Luka lisusu"
+  },
+  "status": {
+    "scheduled": "Etali",
+    "boarding": "Kokotá",
+    "departed": "Elongi",
+    "completed": "Esili",
+    "cancelled": "Ekiteli",
+    "pending": "Kozela",
+    "confirmed": "Ekateli",
+    "active": "Ezali",
+    "inactive": "Ezali té"
+  },
+  "errors": {
+    "server_error": "Likambo ekomeli. Luka lisusu.",
+    "network_error": "Tala connexion ya internet na yo."
+  }
+}

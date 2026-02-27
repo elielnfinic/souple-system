@@ -1,0 +1,55 @@
+{
+  "nav": {
+    "dashboard": "Dashibodi",
+    "trips": "Safari",
+    "bookings": "Bukings",
+    "fleet": "Meli/Magari",
+    "payments": "Malipo",
+    "reports": "Ripoti",
+    "users": "Watumiaji",
+    "organizations": "Mashirika",
+    "routes": "Njia",
+    "notifications": "Arifa",
+    "security": "Usalama",
+    "settings": "Mipangilio"
+  },
+  "auth": {
+    "login": "Ingia",
+    "logout": "Toka",
+    "register": "Jisajili",
+    "phone": "Nambari ya simu",
+    "email": "Anwani ya barua pepe",
+    "otp_code": "Nambari ya uthibitisho",
+    "send_otp": "Tuma nambari",
+    "verify": "Thibitisha",
+    "login_title": "Ingia kwenye Souple",
+    "first_name": "Jina la kwanza",
+    "last_name": "Jina la ukoo"
+  },
+  "actions": {
+    "save": "Hifadhi",
+    "cancel": "Ghairi",
+    "delete": "Futa",
+    "edit": "Hariri",
+    "confirm": "Thibitisha",
+    "back": "Rudi",
+    "next": "Mbele",
+    "search": "Tafuta",
+    "retry": "Jaribu tena"
+  },
+  "status": {
+    "scheduled": "Imepangwa",
+    "boarding": "Kupanda",
+    "departed": "Imeondoka",
+    "completed": "Imekamilika",
+    "cancelled": "Imefutwa",
+    "pending": "Inasubiri",
+    "confirmed": "Imethibitishwa",
+    "active": "Inafanya kazi",
+    "inactive": "Haifanyi kazi"
+  },
+  "errors": {
+    "server_error": "Hitilafu imetokea. Tafadhali jaribu tena.",
+    "network_error": "Angalia muunganisho wa intaneti."
+  }
+}

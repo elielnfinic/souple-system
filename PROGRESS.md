@@ -8,67 +8,67 @@
 
 ## Phase 1: Core Foundation
 
-### Skill 01: Foundation [0/20]
+### Skill 01: Foundation [17/20]
 
 **Database & Schema**
-- [ ] DB: Create `users` table with OTP fields, phone, email, avatar (Kael)
-- [ ] DB: Create `organizations` table with settings JSON, subscription tier (Kael)
-- [ ] DB: Create `org_members` table with role enum and join date (Kael)
-- [ ] DB: Create `cities` table with coordinates and timezone (Kael)
-- [ ] DB: Create `routes` table linking origin/destination cities (Kael)
-- [ ] DB: Create `route_stops` table with ordering, distance_km, duration_min (Kael)
-- [ ] DB: Create `audit_logs` table for sensitive operation tracking (Kael → Zane)
+- [x] DB: Create `users` table with OTP fields, phone, email, avatar (Kael)
+- [x] DB: Create `organizations` table with settings JSON, subscription tier (Kael)
+- [x] DB: Create `org_members` table with role enum and join date (Kael)
+- [x] DB: Create `cities` table with coordinates and timezone (Kael)
+- [x] DB: Create `routes` table linking origin/destination cities (Kael)
+- [x] DB: Create `route_stops` table with ordering, distance_km, duration_min (Kael)
+- [x] DB: Create `audit_logs` table for sensitive operation tracking (Kael → Zane)
 
 **Authentication & Authorization**
-- [ ] Auth: OTP generation, sending (SMS/email), and verification (Kael → Zane)
-- [ ] Auth: Access token + refresh token flow (Kael → Zane)
-- [ ] Auth: Registration endpoint with org creation (Kael → Zane)
-- [ ] Auth: Login endpoint with OTP (Kael → Zane)
-- [ ] RBAC: Role-based middleware (super_admin, org_admin, manager, driver, ticketer, passenger) (Kael → Zane)
-- [ ] RBAC: Org-scoped authorization (users can only access their org's data) (Kael → Zane)
+- [x] Auth: OTP generation, sending (SMS/email), and verification (Kael → Zane)
+- [x] Auth: Access token + refresh token flow (Kael → Zane)
+- [x] Auth: Registration endpoint with org creation (Kael → Zane)
+- [x] Auth: Login endpoint with OTP (Kael → Zane)
+- [x] RBAC: Role-based middleware (super_admin, org_admin, manager, driver, ticketer, passenger) (Kael → Zane)
+- [x] RBAC: Org-scoped authorization (users can only access their org's data) (Kael → Zane)
 
 **API Infrastructure**
-- [ ] API: Standardized response envelope (success, error, pagination) (Kael)
-- [ ] API: Rate limiting middleware on public endpoints (Kael → Zane)
-- [ ] API: Shield security headers configuration (Kael → Zane)
+- [x] API: Standardized response envelope (success, error, pagination) (Kael)
+- [x] API: Rate limiting middleware on public endpoints (Kael → Zane)
+- [x] API: Shield security headers configuration (Kael → Zane)
 - [ ] API: CORS configuration (Kael → Zane)
 
 **Core CRUD**
-- [ ] CRUD: Users (profile, update, list by org) (Kael)
-- [ ] CRUD: Organizations (create, update, settings) (Kael)
-- [ ] CRUD: Cities, routes, route_stops (Kael)
+- [x] CRUD: Users (profile, update, list by org) (Kael)
+- [x] CRUD: Organizations (create, update, settings) (Kael)
+- [x] CRUD: Cities, routes, route_stops (Kael)
 
 **Sign-off**
 - [ ] Acceptance: All Skill 01 criteria validated (Aïcha)
 
 ---
 
-### Skill 02: UI/UX Design System [0/18]
+### Skill 02: UI/UX Design System [15/18]
 
 **Design Tokens**
-- [ ] Tokens: Color system — brand blue, neutral palette, semantic colors (Mila)
-- [ ] Tokens: Typography scale — Inter (UI) + JetBrains Mono (code/data) (Mila)
-- [ ] Tokens: Spacing scale (4px base) and layout grid (Mila)
-- [ ] Tokens: Shadow, border-radius, and elevation system (Mila)
+- [x] Tokens: Color system — brand blue, neutral palette, semantic colors (Mila)
+- [x] Tokens: Typography scale — Inter (UI) + JetBrains Mono (code/data) (Mila)
+- [x] Tokens: Spacing scale (4px base) and layout grid (Mila)
+- [x] Tokens: Shadow, border-radius, and elevation system (Mila)
 
 **Theme & Layout**
-- [ ] Theme: Light/dark mode provider with system preference detection (Mila → Kael)
-- [ ] Theme: CSS custom properties integration with Tailwind v4 (Mila → Kael)
-- [ ] Layout: Responsive breakpoints (320px, 768px, 1024px, 1440px) (Mila → Kael)
+- [x] Theme: Light/dark mode provider with system preference detection (Mila → Kael)
+- [x] Theme: CSS custom properties integration with Tailwind v4 (Mila → Kael)
+- [x] Layout: Responsive breakpoints (320px, 768px, 1024px, 1440px) (Mila → Kael)
 - [ ] Layout: Role-based density variants (spacious for passenger, dense for operator) (Mila → Kael)
 
 **Component Library**
-- [ ] Components: Buttons (primary, secondary, ghost, destructive + sizes) (Mila → Kael)
-- [ ] Components: Form inputs (text, select, checkbox, radio, date picker) (Mila → Kael)
-- [ ] Components: Cards, modals, dialogs, and drawers (Mila → Kael)
+- [x] Components: Buttons (primary, secondary, ghost, destructive + sizes) (Mila → Kael)
+- [x] Components: Form inputs (text, select, checkbox, radio, date picker) (Mila → Kael)
+- [x] Components: Cards, modals, dialogs, and drawers (Mila → Kael)
 - [ ] Components: Data tables with sorting, filtering, pagination (Mila → Kael)
 - [ ] Components: Toast notifications and alert banners (Mila → Kael)
-- [ ] Components: Loading skeletons and empty states (Mila → Kael)
+- [x] Components: Loading skeletons and empty states (Mila → Kael)
 
 **Internationalization**
-- [ ] i18n: next-intl setup with FR (default), EN, LN, SW (Kael)
-- [ ] i18n: Timezone display conversion (UTC → local via Luxon) (Kael)
-- [ ] i18n: Dual-currency formatting ("45 000 FC (~$16)") (Kael)
+- [x] i18n: next-intl setup with FR (default), EN, LN, SW (Kael)
+- [x] i18n: Timezone display conversion (UTC → local via Luxon) (Kael)
+- [x] i18n: Dual-currency formatting ("45 000 FC (~$16)") (Kael)
 
 **Sign-off**
 - [ ] Acceptance: All Skill 02 criteria validated (Aïcha)
@@ -659,7 +659,7 @@
 
 | Phase | Skills | Tasks | Done |
 |-------|--------|-------|------|
-| 1. Core Foundation | 01, 02 | 38 | 0 |
+| 1. Core Foundation | 01, 02 | 38 | 32 |
 | 2. Core Platform | 03, 04, 05 | 52 | 0 |
 | 3. Communication | 06, 16, 19, 21 | 42 | 0 |
 | 4. Hardware & Logistics | 07, 22 | 22 | 0 |
