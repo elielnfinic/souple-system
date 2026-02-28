@@ -134,4 +134,23 @@ router.group(() => {
     router.put('/:id/cancel', [() => import('#controllers/v1/bookings_controller'), 'cancel'])
   }).prefix('/bookings').use(middleware.auth())
 
+  // ─── Payments ─────────────────────────────────────────────────────────────────
+  router.post('/payments/webhook/:provider', [() => import('#controllers/v1/payments_controller'), 'webhook'])
+  router.group(() => {
+    router.get('/payments', [() => import('#controllers/v1/payments_controller'), 'index'])
+    router.post('/payments', [() => import('#controllers/v1/payments_controller'), 'store'])
+    router.get('/payments/:id', [() => import('#controllers/v1/payments_controller'), 'show'])
+    router.post('/payments/:id/refund', [() => import('#controllers/v1/payments_controller'), 'refund'])
+  }).use(middleware.auth())
+
+  // ─── Notifications ────────────────────────────────────────────────────────────
+  router.group(() => {
+    router.get('/notifications', [() => import('#controllers/v1/notifications_controller'), 'index'])
+    router.get('/notifications/unread-count', [() => import('#controllers/v1/notifications_controller'), 'unreadCount'])
+    router.put('/notifications/mark-all-read', [() => import('#controllers/v1/notifications_controller'), 'markAllRead'])
+    router.put('/notifications/:id/read', [() => import('#controllers/v1/notifications_controller'), 'markRead'])
+    router.get('/notifications/preferences', [() => import('#controllers/v1/notifications_controller'), 'getPreferences'])
+    router.put('/notifications/preferences', [() => import('#controllers/v1/notifications_controller'), 'updatePreferences'])
+  }).use(middleware.auth())
+
 }).prefix('/api/v1')
