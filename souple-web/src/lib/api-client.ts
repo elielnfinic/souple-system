@@ -120,11 +120,22 @@ export const authApi = {
   verifyOtp: (data: { phone?: string; email?: string; code: string; purpose: string }) =>
     api.post('/auth/verify-otp', data),
 
+  sendRegistrationOtp: (data: {
+    email: string
+    phone?: string
+    password: string
+    firstName: string
+    lastName: string
+    locale?: string
+  }) => api.post('/auth/send-registration-otp', data),
   register: (data: unknown) => api.post('/auth/register', data),
   login: (data: unknown) => api.post('/auth/login', data),
   logout: () => api.post('/auth/logout'),
   me: () => api.get('/me'),
   updateMe: (data: unknown) => api.put('/me', data),
+  forgotPassword: (email: string) => api.post('/auth/forgot-password', { email }),
+  resetPassword: (data: { email: string; otpCode: string; newPassword: string }) =>
+    api.post('/auth/reset-password', data),
 }
 
 // ─── Organizations API ────────────────────────────────────────────────────────

@@ -17,15 +17,28 @@ export const verifyOtpValidator = vine.compile(
   })
 )
 
-export const registerValidator = vine.compile(
+// Pre-registration: validate data + send OTP (no user created yet)
+export const sendRegistrationOtpValidator = vine.compile(
   vine.object({
-    phone: vine.string().trim().minLength(8).maxLength(20),
-    email: vine.string().email().trim().optional(),
+    email: vine.string().email().trim(),
+    phone: vine.string().trim().maxLength(20).optional(),
+    password: vine.string().minLength(8),
     firstName: vine.string().trim().minLength(1).maxLength(100),
     lastName: vine.string().trim().minLength(1).maxLength(100),
-    otpCode: vine.string().trim().minLength(6).maxLength(6),
     locale: vine.enum(['fr', 'en', 'ln', 'sw']).optional(),
-    // Optional: create an organization on registration
+  })
+)
+
+export const registerValidator = vine.compile(
+  vine.object({
+    email: vine.string().email().trim(),
+    phone: vine.string().trim().maxLength(20).optional(),
+    password: vine.string().minLength(8),
+    firstName: vine.string().trim().minLength(1).maxLength(100),
+    lastName: vine.string().trim().minLength(1).maxLength(100),
+    otpCode: vine.string().trim().regex(/^\d{6}$/),
+    locale: vine.enum(['fr', 'en', 'ln', 'sw']).optional(),
+    timezone: vine.string().trim().maxLength(100).optional(),
     organization: vine
       .object({
         name: vine.string().trim().minLength(2).maxLength(255),
@@ -40,12 +53,24 @@ export const registerValidator = vine.compile(
 
 export const loginValidator = vine.compile(
   vine.object({
-    phone: vine.string().trim().optional(),
     email: vine.string().email().trim().optional(),
-    // OTP-based login
+    phone: vine.string().trim().optional(),
+    password: vine.string().optional(),
     otpCode: vine.string().trim().minLength(6).maxLength(6).optional(),
-    // Password-based login (admin accounts)
-    password: vine.string().minLength(8).optional(),
+  })
+)
+
+export const forgotPasswordValidator = vine.compile(
+  vine.object({
+    email: vine.string().email().trim(),
+  })
+)
+
+export const resetPasswordValidator = vine.compile(
+  vine.object({
+    email: vine.string().email().trim(),
+    otpCode: vine.string().trim().regex(/^\d{6}$/),
+    newPassword: vine.string().minLength(8),
   })
 )
 

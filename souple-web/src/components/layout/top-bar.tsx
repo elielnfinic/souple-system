@@ -1,8 +1,10 @@
 'use client'
 
-import { Bell, Search, Sun, Moon, Monitor, ChevronDown } from 'lucide-react'
+import { Search, Sun, Moon, Monitor, ChevronDown } from 'lucide-react'
 import { useTheme } from '@/providers/theme-provider'
 import { useAuth } from '@/providers/auth-provider'
+import { MobileNavDrawer } from '@/components/layout/mobile-nav'
+import { NotificationBell } from '@/components/notifications/NotificationBell'
 import { cn } from '@/lib/utils'
 
 interface TopBarProps {
@@ -25,7 +27,10 @@ export function TopBar({ breadcrumbs }: TopBarProps) {
     : Monitor
 
   return (
-    <header className="sticky top-0 z-40 flex items-center h-14 px-4 gap-3 border-b border-[#E5E7EB] dark:border-[#374151] bg-white dark:bg-[#111827]">
+    <header className="sticky top-0 z-40 flex items-center h-14 px-4 gap-3 border-b border-[#E5E7EB] dark:border-[#374151] bg-white dark:bg-[#111111]">
+      {/* Mobile hamburger — only visible on mobile */}
+      <MobileNavDrawer />
+
       {/* Breadcrumbs */}
       <nav className="flex-1 flex items-center gap-1.5 text-sm min-w-0" aria-label="Breadcrumb">
         {breadcrumbs?.map((crumb, i) => (
@@ -68,17 +73,7 @@ export function TopBar({ breadcrumbs }: TopBarProps) {
         </button>
 
         {/* Notifications */}
-        <button
-          className="relative p-2 rounded-md text-[#6B7280] hover:bg-[#F3F4F6] dark:hover:bg-[#1F2937] hover:text-[#374151] dark:hover:text-[#D1D5DB] transition-colors"
-          aria-label="Notifications"
-        >
-          <Bell size={18} aria-hidden="true" />
-          {/* Unread badge — populated dynamically */}
-          <span
-            className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-[#DC2626] ring-2 ring-white dark:ring-[#111827]"
-            aria-hidden="true"
-          />
-        </button>
+        <NotificationBell />
 
         {/* User menu */}
         <button className="flex items-center gap-2 h-8 pl-2 pr-1.5 rounded-md hover:bg-[#F3F4F6] dark:hover:bg-[#1F2937] transition-colors">

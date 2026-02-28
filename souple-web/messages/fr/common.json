@@ -33,7 +33,40 @@
     "first_name": "Prénom",
     "last_name": "Nom de famille",
     "no_account": "Pas encore de compte ?",
-    "have_account": "Déjà un compte ?"
+    "have_account": "Déjà un compte ?",
+    "tab_email_password": "Email",
+    "tab_phone_password": "Téléphone",
+    "tab_otp": "Code OTP",
+    "login_email_subtitle": "Connectez-vous avec votre adresse e-mail et mot de passe",
+    "login_phone_subtitle": "Connectez-vous avec votre numéro de téléphone et mot de passe",
+    "login_otp_subtitle": "Recevez un code à usage unique sur votre téléphone ou e-mail",
+    "sign_in": "Se connecter",
+    "password_placeholder": "8 caractères minimum",
+    "show_password": "Afficher le mot de passe",
+    "hide_password": "Masquer le mot de passe",
+    "forgot_password": "Mot de passe oublié ?",
+    "otp_identifier": "Téléphone ou e-mail",
+    "register_subtitle": "Créez votre compte gratuitement",
+    "confirm_password": "Confirmer le mot de passe",
+    "password_mismatch": "Les mots de passe ne correspondent pas",
+    "password_too_short": "8 caractères minimum",
+    "phone_optional": "Téléphone (optionnel)",
+    "create_account": "Créer mon compte",
+    "forgot_password_title": "Mot de passe oublié",
+    "forgot_password_subtitle": "Entrez votre e-mail pour recevoir un code de réinitialisation",
+    "send_reset_code": "Envoyer le code",
+    "reset_password_title": "Nouveau mot de passe",
+    "reset_password_subtitle": "Entrez le code reçu par e-mail et choisissez un nouveau mot de passe",
+    "new_password": "Nouveau mot de passe",
+    "reset_password": "Réinitialiser le mot de passe",
+    "back_to_login": "Retour à la connexion",
+    "reset_success": "Mot de passe mis à jour avec succès",
+    "redirecting_to_login": "Redirection vers la connexion…",
+    "otp_invalid": "Code invalide ou expiré. Veuillez réessayer.",
+    "verify_email_title": "Vérifiez votre e-mail",
+    "verify_email_subtitle": "Un code à 6 chiffres a été envoyé à {email}",
+    "verify_and_create": "Vérifier et créer mon compte",
+    "checking_email": "Envoi du code…"
   },
   "actions": {
     "save": "Enregistrer",
@@ -100,5 +133,170 @@
     "minutes_ago": "{count, plural, =1 {il y a 1 minute} other {il y a # minutes}}",
     "hours_ago": "{count, plural, =1 {il y a 1 heure} other {il y a # heures}}",
     "days_ago": "{count, plural, =1 {il y a 1 jour} other {il y a # jours}}"
+  },
+  "trips": {
+    "title": "Trajets",
+    "search": "Rechercher un trajet",
+    "from": "Départ",
+    "to": "Arrivée",
+    "date": "Date",
+    "passengers": "Passagers",
+    "searchButton": "Rechercher",
+    "available": "disponibles",
+    "book": "Réserver",
+    "newTrip": "Nouveau trajet",
+    "departure": "Départ",
+    "status": {
+      "scheduled": "Planifié",
+      "boarding": "Embarquement",
+      "in_progress": "En cours",
+      "completed": "Terminé",
+      "cancelled": "Annulé"
+    }
+  },
+  "bookings": {
+    "title": "Réservations",
+    "confirm": "Confirmer",
+    "cancel": "Annuler",
+    "track": "Suivre",
+    "bookingCode": "Code de réservation",
+    "boardingStop": "Arrêt de montée",
+    "alightingStop": "Arrêt de descente",
+    "totalAmount": "Montant total",
+    "status": {
+      "pending": "En attente",
+      "confirmed": "Confirmé",
+      "checked_in": "Embarqué",
+      "completed": "Terminé",
+      "cancelled": "Annulé",
+      "refunded": "Remboursé"
+    }
+  },
+  "pos": {
+    "title": "Point de vente",
+    "selectTrip": "Sélectionner un trajet",
+    "issueTicket": "Émettre le billet",
+    "recentSales": "Ventes récentes",
+    "passengerName": "Nom du passager",
+    "passengerPhone": "Téléphone"
+  },
+  "prices": {
+    "title": "Tarifs",
+    "addRule": "Ajouter une règle",
+    "priceMatrix": "Matrice tarifaire",
+    "basePrice": "Prix de base",
+    "priceMode": {
+      "fixed": "Fixe",
+      "per_segment": "Par segment",
+      "per_km": "Par kilomètre"
+    }
+  },
+  "payments": {
+    "title": "Paiements",
+    "method": {
+      "mobile_money": "Mobile Money",
+      "card": "Carte bancaire",
+      "cash": "Espèces",
+      "stablecoin": "Crypto (USDT/USDC)"
+    },
+    "provider": {
+      "mtn": "MTN MoMo",
+      "orange": "Orange Money",
+      "airtel": "Airtel Money",
+      "stripe": "Carte (Stripe)"
+    },
+    "status": {
+      "pending": "En attente",
+      "processing": "En cours",
+      "completed": "Payé",
+      "failed": "Échoué",
+      "refunded": "Remboursé",
+      "partially_refunded": "Partiellement remboursé"
+    },
+    "initiate": "Payer maintenant",
+    "receipt": "Reçu de paiement",
+    "refund": "Rembourser",
+    "pollMessage": "En attente de confirmation...",
+    "success": "Paiement réussi !",
+    "failed": "Paiement échoué",
+    "cashConfirm": "Confirmer le paiement en espèces"
+  },
+  "notifications": {
+    "title": "Notifications",
+    "markAllRead": "Tout marquer comme lu",
+    "noNotifications": "Aucune notification",
+    "seeAll": "Voir toutes les notifications",
+    "preferences": "Préférences de notifications",
+    "channels": {
+      "email": "Email",
+      "sms": "SMS",
+      "telegram": "Telegram",
+      "push": "Notifications push"
+    },
+    "types": {
+      "booking_confirmed": "Réservation confirmée",
+      "payment_receipt": "Reçu de paiement",
+      "trip_departure_reminder": "Rappel de départ",
+      "trip_cancelled": "Trajet annulé",
+      "trip_started": "Trajet démarré",
+      "trip_completed": "Trajet terminé",
+      "welcome": "Bienvenue",
+      "kyc_approved": "KYC approuvé",
+      "kyc_rejected": "KYC rejeté"
+    },
+    "telegramLink": {
+      "title": "Liez votre Telegram",
+      "getCode": "Obtenir un code de liaison",
+      "instructions": "Envoyez ce code au bot",
+      "linked": "Compte Telegram lié",
+      "unlink": "Délier"
+    },
+    "push": {
+      "enable": "Activer les notifications push",
+      "enabled": "Notifications push activées",
+      "denied": "Permission refusée"
+    }
+  },
+  "fleet": {
+    "title": "Flotte",
+    "addVehicle": "Ajouter un véhicule",
+    "editVehicle": "Modifier le véhicule",
+    "noVehicles": "Aucun véhicule trouvé",
+    "type": "Type",
+    "brand": "Marque",
+    "model": "Modèle",
+    "year": "Année",
+    "plate": "Immatriculation",
+    "seats": "Sièges",
+    "color": "Couleur",
+    "visibility": {
+      "label": "Visibilité",
+      "public": "Public",
+      "private": "Privé"
+    },
+    "verificationStatus": {
+      "label": "Statut",
+      "pending": "En attente",
+      "verified": "Vérifié",
+      "rejected": "Rejeté"
+    },
+    "features": {
+      "label": "Équipements",
+      "ac": "Climatisation",
+      "wifi": "WiFi",
+      "usb": "Chargeur USB",
+      "gps": "GPS"
+    },
+    "availableForRental": "Disponible à la location",
+    "seatLayout": "Configuration des sièges",
+    "seatLayoutEditor": "Éditeur de configuration",
+    "noLayouts": "Aucune configuration de sièges",
+    "newLayout": "Nouvelle configuration",
+    "defaultLayout": "Par défaut",
+    "photos": "Photos",
+    "noPhotos": "Aucune photo",
+    "verify": "Vérifier",
+    "reject": "Rejeter",
+    "deleteConfirm": "Confirmer la suppression"
   }
 }

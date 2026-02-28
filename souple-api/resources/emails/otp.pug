@@ -1,0 +1,11 @@
+extends ./base
+
+block content
+  h1= i18n.title
+  p= i18n.greeting
+  p= i18n.body
+  .otp-block
+    span.otp-code= code
+    .otp-expiry= i18n.expiry
+  .divider(style='height:1px;background:#F3F4F6;margin:20px 0;')
+  p.note= i18n.ignore

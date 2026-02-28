@@ -24,12 +24,27 @@ export default await Env.create(new URL('../', import.meta.url), {
   AWS_REGION: Env.schema.string.optional(),
   AWS_S3_BUCKET: Env.schema.string.optional(),
 
-  // Email
+  // Email (SMTP)
   SMTP_HOST: Env.schema.string.optional(),
   SMTP_PORT: Env.schema.number.optional(),
   SMTP_USERNAME: Env.schema.string.optional(),
   SMTP_PASSWORD: Env.schema.string.optional(),
+  MAIL_FROM: Env.schema.string.optional(),
+  MAIL_FROM_NAME: Env.schema.string.optional(),
 
   FRONTEND_URL: Env.schema.string(),
   SMS_PROVIDER: Env.schema.string.optional(),
+
+  // Africa's Talking SMS
+  AT_API_KEY: Env.schema.string.optional(),
+  AT_USERNAME: Env.schema.string.optional(),
+  AT_SENDER_ID: Env.schema.string.optional(),
+
+  // Telegram Bot
+  TELEGRAM_BOT_TOKEN: Env.schema.string.optional(),
+
+  // Web Push (VAPID)
+  VAPID_PUBLIC_KEY: Env.schema.string.optional(),
+  VAPID_PRIVATE_KEY: Env.schema.string.optional(),
+  VAPID_SUBJECT: Env.schema.string.optional(),
 })

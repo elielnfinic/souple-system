@@ -190,7 +190,24 @@ export default class OrganizationsController {
       }
     }
 
-    const targetUser = await User.findOrFail(data.userId)
+    // Find target user by userId or phone
+    let targetUser: User | null = null
+    if (data.userId) {
+      targetUser = await User.findOrFail(data.userId)
+    } else if (data.phone) {
+      targetUser = await User.findBy('phone', data.phone)
+      if (!targetUser) {
+        return response.notFound({
+          success: false,
+          error: { code: 'E_NOT_FOUND', message: 'No account found with this phone number' },
+        })
+      }
+    } else {
+      return response.badRequest({
+        success: false,
+        error: { code: 'E_VALIDATION', message: 'Either userId or phone is required' },
+      })
+    }
 
     const existing = await OrganizationMember.query()
       .where('organization_id', org.id)

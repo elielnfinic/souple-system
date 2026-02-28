@@ -1,4 +1,14 @@
 @import "tailwindcss";
+@plugin "tailwindcss-animate";
+
+/* Dark mode: triggered by .dark class (set by ThemeProvider) */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Register Inter + JetBrains Mono as Tailwind's font-sans/font-mono utilities */
+@theme {
+  --font-sans: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", "Consolas", monospace;
+}
 
 /* ─── CSS Custom Properties (Design Tokens) ────────────────────────────────── */
 

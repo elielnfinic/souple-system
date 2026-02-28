@@ -1,6 +1,7 @@
 import redis from '@adonisjs/redis/services/main'
 import { OTP_LENGTH, OTP_EXPIRY_MINUTES } from '@souple/shared/constants'
 import type { OtpPurpose } from '@souple/shared'
+import { EmailService } from '#services/email_service'
 
 const OTP_CHARS = '0123456789'
 
@@ -71,11 +72,15 @@ export class OtpService {
   }
 
   /**
-   * Send OTP via email.
+   * Send OTP via email for a given purpose.
+   * @param purpose defaults to 'login' if not provided (legacy callers)
    */
-  static async sendEmail(email: string, code: string): Promise<void> {
-    // Email integration added in Skill 06
-    // For now, stub
-    console.log(`[OTP STUB] Email: ${email} | Code: ${code}`)
+  static async sendEmail(
+    email: string,
+    code: string,
+    purpose: 'login' | 'register' | 'password_reset' = 'login',
+    locale: string = 'fr'
+  ): Promise<void> {
+    await EmailService.sendOtp(email, code, purpose, locale)
   }
 }

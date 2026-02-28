@@ -6,6 +6,8 @@ import { routing } from '@/i18n/routing'
 import { ThemeProvider } from '@/providers/theme-provider'
 import { AuthProvider } from '@/providers/auth-provider'
 import { QueryProvider } from '@/providers/query-provider'
+import { ToastProvider } from '@/components/ui/toast'
+import { DensityProvider } from '@/providers/density-provider'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -50,14 +52,18 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
           <ThemeProvider>
             <QueryProvider>
               <AuthProvider>
-                {/* Skip to main content — accessibility */}
-                <a
-                  href="#main-content"
-                  className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-[#0A7AFF] focus:text-white focus:rounded-md focus:text-sm focus:font-medium"
-                >
-                  Skip to main content
-                </a>
-                {children}
+                <DensityProvider>
+                  <ToastProvider>
+                    {/* Skip to main content — accessibility */}
+                    <a
+                      href="#main-content"
+                      className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-[#0A7AFF] focus:text-white focus:rounded-md focus:text-sm focus:font-medium"
+                    >
+                      Skip to main content
+                    </a>
+                    {children}
+                  </ToastProvider>
+                </DensityProvider>
               </AuthProvider>
             </QueryProvider>
           </ThemeProvider>

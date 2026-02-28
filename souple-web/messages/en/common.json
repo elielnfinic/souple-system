@@ -33,7 +33,40 @@
     "first_name": "First name",
     "last_name": "Last name",
     "no_account": "Don't have an account?",
-    "have_account": "Already have an account?"
+    "have_account": "Already have an account?",
+    "tab_email_password": "Email",
+    "tab_phone_password": "Phone",
+    "tab_otp": "OTP Code",
+    "login_email_subtitle": "Sign in with your email address and password",
+    "login_phone_subtitle": "Sign in with your phone number and password",
+    "login_otp_subtitle": "Receive a one-time code on your phone or email",
+    "sign_in": "Sign in",
+    "password_placeholder": "8+ characters",
+    "show_password": "Show password",
+    "hide_password": "Hide password",
+    "forgot_password": "Forgot password?",
+    "otp_identifier": "Phone or email",
+    "register_subtitle": "Create your free account",
+    "confirm_password": "Confirm password",
+    "password_mismatch": "Passwords do not match",
+    "password_too_short": "At least 8 characters required",
+    "phone_optional": "Phone (optional)",
+    "create_account": "Create account",
+    "forgot_password_title": "Forgot password",
+    "forgot_password_subtitle": "Enter your email to receive a reset code",
+    "send_reset_code": "Send reset code",
+    "reset_password_title": "New password",
+    "reset_password_subtitle": "Enter the code from your email and choose a new password",
+    "new_password": "New password",
+    "reset_password": "Reset password",
+    "back_to_login": "Back to sign in",
+    "reset_success": "Password updated successfully",
+    "redirecting_to_login": "Redirecting to sign in…",
+    "otp_invalid": "Invalid or expired code. Please try again.",
+    "verify_email_title": "Verify your email",
+    "verify_email_subtitle": "A 6-digit code was sent to {email}",
+    "verify_and_create": "Verify & create account",
+    "checking_email": "Sending code…"
   },
   "actions": {
     "save": "Save",
@@ -100,5 +133,170 @@
     "minutes_ago": "{count, plural, =1 {1 minute ago} other {# minutes ago}}",
     "hours_ago": "{count, plural, =1 {1 hour ago} other {# hours ago}}",
     "days_ago": "{count, plural, =1 {1 day ago} other {# days ago}}"
+  },
+  "trips": {
+    "title": "Trips",
+    "search": "Search trips",
+    "from": "From",
+    "to": "To",
+    "date": "Date",
+    "passengers": "Passengers",
+    "searchButton": "Search",
+    "available": "available",
+    "book": "Book",
+    "newTrip": "New trip",
+    "departure": "Departure",
+    "status": {
+      "scheduled": "Scheduled",
+      "boarding": "Boarding",
+      "in_progress": "In progress",
+      "completed": "Completed",
+      "cancelled": "Cancelled"
+    }
+  },
+  "bookings": {
+    "title": "Bookings",
+    "confirm": "Confirm",
+    "cancel": "Cancel",
+    "track": "Track",
+    "bookingCode": "Booking code",
+    "boardingStop": "Boarding stop",
+    "alightingStop": "Alighting stop",
+    "totalAmount": "Total amount",
+    "status": {
+      "pending": "Pending",
+      "confirmed": "Confirmed",
+      "checked_in": "Checked in",
+      "completed": "Completed",
+      "cancelled": "Cancelled",
+      "refunded": "Refunded"
+    }
+  },
+  "pos": {
+    "title": "Point of Sale",
+    "selectTrip": "Select a trip",
+    "issueTicket": "Issue ticket",
+    "recentSales": "Recent sales",
+    "passengerName": "Passenger name",
+    "passengerPhone": "Phone"
+  },
+  "prices": {
+    "title": "Prices",
+    "addRule": "Add rule",
+    "priceMatrix": "Price matrix",
+    "basePrice": "Base price",
+    "priceMode": {
+      "fixed": "Fixed",
+      "per_segment": "Per segment",
+      "per_km": "Per km"
+    }
+  },
+  "payments": {
+    "title": "Payments",
+    "method": {
+      "mobile_money": "Mobile Money",
+      "card": "Bank card",
+      "cash": "Cash",
+      "stablecoin": "Crypto (USDT/USDC)"
+    },
+    "provider": {
+      "mtn": "MTN MoMo",
+      "orange": "Orange Money",
+      "airtel": "Airtel Money",
+      "stripe": "Card (Stripe)"
+    },
+    "status": {
+      "pending": "Pending",
+      "processing": "Processing",
+      "completed": "Paid",
+      "failed": "Failed",
+      "refunded": "Refunded",
+      "partially_refunded": "Partially refunded"
+    },
+    "initiate": "Pay now",
+    "receipt": "Payment receipt",
+    "refund": "Refund",
+    "pollMessage": "Awaiting confirmation...",
+    "success": "Payment successful!",
+    "failed": "Payment failed",
+    "cashConfirm": "Confirm cash payment"
+  },
+  "notifications": {
+    "title": "Notifications",
+    "markAllRead": "Mark all as read",
+    "noNotifications": "No notifications",
+    "seeAll": "See all notifications",
+    "preferences": "Notification preferences",
+    "channels": {
+      "email": "Email",
+      "sms": "SMS",
+      "telegram": "Telegram",
+      "push": "Push notifications"
+    },
+    "types": {
+      "booking_confirmed": "Booking confirmed",
+      "payment_receipt": "Payment receipt",
+      "trip_departure_reminder": "Departure reminder",
+      "trip_cancelled": "Trip cancelled",
+      "trip_started": "Trip started",
+      "trip_completed": "Trip completed",
+      "welcome": "Welcome",
+      "kyc_approved": "KYC approved",
+      "kyc_rejected": "KYC rejected"
+    },
+    "telegramLink": {
+      "title": "Link your Telegram",
+      "getCode": "Get a link code",
+      "instructions": "Send this code to the bot",
+      "linked": "Telegram account linked",
+      "unlink": "Unlink"
+    },
+    "push": {
+      "enable": "Enable push notifications",
+      "enabled": "Push notifications enabled",
+      "denied": "Permission denied"
+    }
+  },
+  "fleet": {
+    "title": "Fleet",
+    "addVehicle": "Add Vehicle",
+    "editVehicle": "Edit Vehicle",
+    "noVehicles": "No vehicles found",
+    "type": "Type",
+    "brand": "Brand",
+    "model": "Model",
+    "year": "Year",
+    "plate": "Plate",
+    "seats": "Seats",
+    "color": "Color",
+    "visibility": {
+      "label": "Visibility",
+      "public": "Public",
+      "private": "Private"
+    },
+    "verificationStatus": {
+      "label": "Status",
+      "pending": "Pending",
+      "verified": "Verified",
+      "rejected": "Rejected"
+    },
+    "features": {
+      "label": "Features",
+      "ac": "Air conditioning",
+      "wifi": "WiFi",
+      "usb": "USB charging",
+      "gps": "GPS tracking"
+    },
+    "availableForRental": "Available for rental",
+    "seatLayout": "Seat Layout",
+    "seatLayoutEditor": "Layout Editor",
+    "noLayouts": "No seat layouts configured",
+    "newLayout": "New Layout",
+    "defaultLayout": "Default",
+    "photos": "Photos",
+    "noPhotos": "No photos uploaded",
+    "verify": "Verify",
+    "reject": "Reject",
+    "deleteConfirm": "Confirm deletion"
   }
 }

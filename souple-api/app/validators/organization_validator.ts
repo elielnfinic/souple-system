@@ -29,7 +29,8 @@ export const updateOrganizationValidator = vine.compile(
 
 export const addMemberValidator = vine.compile(
   vine.object({
-    userId: vine.number().positive(),
+    userId: vine.number().positive().optional(),
+    phone: vine.string().trim().maxLength(20).optional(),
     role: vine.enum(['owner', 'manager', 'finance', 'ticketer', 'driver']),
   })
 )

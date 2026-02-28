@@ -3,7 +3,7 @@ import vine from '@vinejs/vine'
 export const createCityValidator = vine.compile(
   vine.object({
     name: vine.string().trim().minLength(1).maxLength(100),
-    province: vine.string().trim().minLength(1).maxLength(100),
+    province: vine.string().trim().minLength(1).maxLength(100).optional(),
     country: vine.string().trim().maxLength(50).optional(),
     latitude: vine.number().range([-90, 90]).optional(),
     longitude: vine.number().range([-180, 180]).optional(),

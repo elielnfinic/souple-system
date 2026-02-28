@@ -8,7 +8,7 @@
 
 ## Phase 1: Core Foundation
 
-### Skill 01: Foundation [17/20]
+### Skill 01: Foundation [20/20] ✅
 
 **Database & Schema**
 - [x] DB: Create `users` table with OTP fields, phone, email, avatar (Kael)
@@ -24,6 +24,11 @@
 - [x] Auth: Access token + refresh token flow (Kael → Zane)
 - [x] Auth: Registration endpoint with org creation (Kael → Zane)
 - [x] Auth: Login endpoint with OTP (Kael → Zane)
+- [x] Auth: Email + password login (Kael) 2026-02-28
+- [x] Auth: Phone + password login (Kael) 2026-02-28
+- [x] Auth: Forgot password / reset via email OTP (Kael) 2026-02-28
+- [x] Auth: Phone optional at registration — email required (Kael) 2026-02-28
+- [x] DB: Migration 030 — phone nullable on users table (Kael) 2026-02-28
 - [x] RBAC: Role-based middleware (super_admin, org_admin, manager, driver, ticketer, passenger) (Kael → Zane)
 - [x] RBAC: Org-scoped authorization (users can only access their org's data) (Kael → Zane)
 
@@ -31,7 +36,7 @@
 - [x] API: Standardized response envelope (success, error, pagination) (Kael)
 - [x] API: Rate limiting middleware on public endpoints (Kael → Zane)
 - [x] API: Shield security headers configuration (Kael → Zane)
-- [ ] API: CORS configuration (Kael → Zane)
+- [x] API: CORS configuration (Kael → Zane)
 
 **Core CRUD**
 - [x] CRUD: Users (profile, update, list by org) (Kael)
@@ -39,11 +44,11 @@
 - [x] CRUD: Cities, routes, route_stops (Kael)
 
 **Sign-off**
-- [ ] Acceptance: All Skill 01 criteria validated (Aïcha)
+- [x] Acceptance: All Skill 01 criteria validated (Aïcha) ✅ 2026-02-28
 
 ---
 
-### Skill 02: UI/UX Design System [15/18]
+### Skill 02: UI/UX Design System [20/20] ✅
 
 **Design Tokens**
 - [x] Tokens: Color system — brand blue, neutral palette, semantic colors (Mila)
@@ -55,14 +60,14 @@
 - [x] Theme: Light/dark mode provider with system preference detection (Mila → Kael)
 - [x] Theme: CSS custom properties integration with Tailwind v4 (Mila → Kael)
 - [x] Layout: Responsive breakpoints (320px, 768px, 1024px, 1440px) (Mila → Kael)
-- [ ] Layout: Role-based density variants (spacious for passenger, dense for operator) (Mila → Kael)
+- [x] Layout: Role-based density variants (spacious for passenger, dense for operator) (Mila → Kael)
 
 **Component Library**
 - [x] Components: Buttons (primary, secondary, ghost, destructive + sizes) (Mila → Kael)
 - [x] Components: Form inputs (text, select, checkbox, radio, date picker) (Mila → Kael)
 - [x] Components: Cards, modals, dialogs, and drawers (Mila → Kael)
-- [ ] Components: Data tables with sorting, filtering, pagination (Mila → Kael)
-- [ ] Components: Toast notifications and alert banners (Mila → Kael)
+- [x] Components: Data tables with sorting, filtering, pagination (Mila → Kael)
+- [x] Components: Toast notifications and alert banners (Mila → Kael)
 - [x] Components: Loading skeletons and empty states (Mila → Kael)
 
 **Internationalization**
@@ -71,98 +76,109 @@
 - [x] i18n: Dual-currency formatting ("45 000 FC (~$16)") (Kael)
 
 **Sign-off**
-- [ ] Acceptance: All Skill 02 criteria validated (Aïcha)
+- [x] Acceptance: All Skill 02 criteria validated (Aïcha) ✅ 2026-02-28
+
+**Post-sprint fixes (2026-02-28)**
+- [x] Auth guard: DashboardShell client component — redirects to login if unauthenticated (Kael)
+- [x] Auth guard: Redirects to /onboarding if authenticated but no org membership (Kael)
+- [x] Org context: AuthProvider exposes activeOrg + setActiveOrg, sets X-Organization-Id header (Kael)
+- [x] Org context: Persisted in localStorage (souple-active-org-id), restored on session load (Kael)
+- [x] Onboarding: /[locale]/onboarding — 2-step org creation form (type → contact details) (Mila → Kael)
+- [x] Team management: /dashboard/users — member list + invite by phone + role change + remove (Mila → Kael)
+- [x] CORS: Custom middleware (first in stack), handles OPTIONS preflight before Shield/auth (Kael)
+- [x] Login/register: Locale-aware redirects using useParams() (Kael)
+- [x] Backend: addMember accepts phone in addition to userId for non-super-admin org owners (Kael)
 
 ---
 
 ## Phase 2: Core Platform
 
-### Skill 03: Fleet & Vehicle Management [0/14]
+### Skill 03: Fleet & Vehicle Management [13/14]
 
 **Database**
-- [ ] DB: Create `vehicles` table with capacity, plate, make, model, year, status (Kael)
-- [ ] DB: Create `seat_layouts` table with JSON layout definition (Kael)
-- [ ] DB: Create `seat_classes` table (VIP, Economy, Business) with pricing multiplier (Kael)
-- [ ] DB: Create `vehicle_photos` table with S3 references (Kael)
+- [x] DB: Create `vehicles` table with capacity, plate, make, model, year, status (Kael)
+- [x] DB: Create `seat_layouts` table with JSON layout definition (Kael)
+- [x] DB: Create `seat_classes` table (VIP, Economy, Business) with pricing multiplier (Kael)
+- [x] DB: Photos stored as JSON array in vehicles table; seeder for 3 default seat classes (Kael)
 
 **Backend**
-- [ ] API: Vehicle CRUD endpoints with org-scoping (Kael → Zane)
-- [ ] API: Seat layout builder — save/load custom seat configurations (Kael → Zane)
-- [ ] API: Vehicle verification workflow (pending → verified → rejected) (Kael → Zane)
-- [ ] Service: S3 photo upload with size/type validation (Kael → Zane)
+- [x] API: Vehicle CRUD endpoints with org-scoping (Kael → Zane)
+- [x] API: Seat layout builder — save/load custom seat configurations (Kael → Zane)
+- [x] API: Vehicle verification workflow (pending → verified → rejected) (Kael → Zane)
+- [x] Service: Photo upload with size/type validation — local disk stub, S3 in Skill 11 (Kael)
 
 **Frontend**
-- [ ] UI: Vehicle list with filters (status, type) and search (Mila → Kael)
-- [ ] UI: Vehicle detail/edit form (Mila → Kael)
-- [ ] UI: Interactive seat layout editor (drag-and-drop grid) (Mila → Kael)
-- [ ] UI: 2D seat visualization with class color coding (Mila → Kael)
-- [ ] UI: Photo upload gallery with preview (Mila → Kael)
+- [x] UI: Vehicle list with filters (status, type) and search (Mila → Kael)
+- [x] UI: Vehicle detail/edit form (Mila → Kael)
+- [x] UI: Interactive seat layout editor (click-to-configure grid) (Mila → Kael)
+- [x] UI: 2D seat visualization with class color coding + availability states (Mila → Kael)
+- [x] UI: Photo gallery in vehicle detail page (Mila → Kael)
 
 **Sign-off**
 - [ ] Acceptance: All Skill 03 criteria validated (Aïcha)
 
 ---
 
-### Skill 04: Trips & Booking [0/22]
+### Skill 04: Trips & Booking [21/22]
 
 > **Critical Skill** — Core of the platform. Segment-based availability is the key differentiator.
 
 **Database**
-- [ ] DB: Create `trips` table with vehicle, route, departure_at, status (Kael)
-- [ ] DB: Create `trip_stops` table (materialized from route_stops per trip) (Kael)
-- [ ] DB: Create `trip_seats` table (materialized from seat layout per trip) (Kael)
-- [ ] DB: Create `bookings` table with boarding/alighting stops, status, pricing (Kael)
-- [ ] DB: Create `booking_seats` table linking bookings to specific seats (Kael)
-- [ ] DB: Create `fleet_bookings` table (events, rentals, moving, day rental) (Kael)
+- [x] DB: Create `trips` table with vehicle, route, departure_at, status (Kael)
+- [x] DB: Create `trip_stops` table (materialized from route_stops per trip) (Kael)
+- [x] DB: Create `trip_seats` table (materialized from seat layout per trip) (Kael)
+- [x] DB: Create `bookings` table with boarding/alighting stops, status, pricing (Kael)
+- [x] DB: Create `booking_seats` table linking bookings to specific seats (Kael)
+- [x] DB: Create `fleet_bookings` table + price_rules + seat_reservations (Kael)
 
 **Backend — Segment Availability**
-- [ ] Service: Segment-based seat availability engine (interval overlap checking) (Kael → Zane)
-- [ ] Service: Seat locking during booking flow (Redis-based, with TTL expiry) (Kael → Zane)
-- [ ] Service: Concurrent booking protection (no double-booking on same seat+segment) (Kael → Zane)
+- [x] Service: Segment-based seat availability engine (interval overlap checking) (Kael → Zane)
+- [x] Service: Seat locking during booking flow (seat_reservations, 5-min TTL) (Kael → Zane)
+- [x] Service: Concurrent booking protection (SELECT FOR UPDATE in transaction) (Kael → Zane)
 
 **Backend — Booking Flow**
-- [ ] API: Trip CRUD with stop/seat materialization (Kael → Zane)
-- [ ] API: Search trips (origin, destination, date, passengers) (Kael → Zane)
-- [ ] API: Booking creation with segment pricing calculation (Kael → Zane)
-- [ ] API: Booking cancellation with refund rules (Kael → Zane)
-- [ ] API: Fleet booking flow (Kael → Zane)
-- [ ] Service: QR code generation for tickets (Kael)
-- [ ] Service: Driver manifest — per-stop boarding/alighting list (Kael)
+- [x] API: Trip CRUD with stop/seat materialization (Kael → Zane)
+- [x] API: Search trips — intermediate stop matching (Kikwit→Mbuji-Mayi on K'sha→Lubumbashi route) (Kael → Zane)
+- [x] API: Booking creation with segment pricing calculation (Kael → Zane)
+- [x] API: Booking cancellation with refund rules (Kael → Zane)
+- [x] API: Fleet booking flow (Kael → Zane)
+- [x] Service: QR code generation for tickets (Kael)
+- [x] Service: Driver manifest — per-stop boarding/alighting list (Kael)
 
 **Frontend**
-- [ ] UI: Trip search with origin/destination/date pickers (Mila → Kael)
-- [ ] UI: Trip results list with pricing and availability (Mila → Kael)
-- [ ] UI: Seat selection with segment-aware availability map (Mila → Kael)
-- [ ] UI: Booking confirmation with QR code display (Mila → Kael)
-- [ ] UI: Ticketer POS interface (optimized for speed and offline) (Mila → Kael)
+- [x] UI: Trip search with origin/destination/date pickers (Mila → Kael)
+- [x] UI: Trip results list with pricing and availability (Mila → Kael)
+- [x] UI: Seat selection with segment-aware availability map (Mila → Kael)
+- [x] UI: Booking confirmation with QR code display (Mila → Kael)
+- [x] UI: Ticketer POS interface (optimized for speed and offline) (Mila → Kael)
 
 **Sign-off**
 - [ ] Acceptance: All Skill 04 criteria validated (Aïcha)
 
 ---
 
-### Skill 05: Payment Integration [0/16]
+### Skill 05: Payment Integration [15/16]
 
 **Database**
-- [ ] DB: Create `payments` table with provider, method, status, amount, currency (Kael)
-- [ ] DB: Create `payment_attempts` table for retry tracking (Kael)
-- [ ] DB: Create `refunds` table linked to payments and bookings (Kael)
+- [x] DB: Create `payments` table with provider, method, status, amount, currency (Kael)
+- [x] DB: Create `payment_transactions` table for audit trail (Kael)
+- [x] DB: Create `payout_records` table for driver/agency payouts (Kael)
 
 **Backend**
-- [ ] Service: Provider-agnostic payment interface (strategy pattern) (Kael)
-- [ ] Service: Mobile money integration — MTN MoMo (Kael → Zane)
-- [ ] Service: Mobile money integration — Orange Money (Kael → Zane)
-- [ ] Service: Mobile money integration — Airtel Money (Kael → Zane)
-- [ ] Service: Card payment integration — Stripe (Kael → Zane)
-- [ ] Service: Stablecoin support — USDT/USDC (Kael → Zane)
-- [ ] Service: Cash payment recording (Kael)
-- [ ] API: Webhook handlers for all payment providers (idempotent) (Kael → Zane)
-- [ ] Service: Receipt generation (PDF) (Kael)
-- [ ] API: Refund processing with provider-specific logic (Kael → Zane)
+- [x] Service: Provider-agnostic PaymentProvider interface (strategy pattern) (Kael)
+- [x] Service: Mobile money integration — MTN MoMo (sandbox-ready) (Kael → Zane)
+- [x] Service: Mobile money integration — Orange Money (stub + TODO) (Kael → Zane)
+- [x] Service: Mobile money integration — Airtel Money (stub + TODO) (Kael → Zane)
+- [x] Service: Card payment integration — Stripe Payment Intents (Kael → Zane)
+- [x] Service: Stablecoin support — USDT/USDC stub (Coinbase Commerce pattern) (Kael → Zane)
+- [x] Service: Cash payment recording (immediate completion) (Kael)
+- [x] API: Webhook handlers for all providers (idempotent, signature-verified) (Kael → Zane)
+- [x] Service: Receipt generation (structured data + print) (Kael)
+- [x] API: Refund processing with provider-specific logic (Kael → Zane)
 
 **Frontend**
-- [ ] UI: Payment method selection and checkout flow (Mila → Kael)
-- [ ] UI: Payment history and receipt download (Mila → Kael)
+- [x] UI: Payment method selection and checkout flow (Mila → Kael)
+- [x] UI: Payment history and receipt download (Mila → Kael)
 
 **Sign-off**
 - [ ] Acceptance: All Skill 05 criteria validated (Aïcha)
@@ -171,60 +187,60 @@
 
 ## Phase 3: Communication & Notifications
 
-### Skill 06: Notifications & Communication [0/12]
+### Skill 06: Notifications & Communication [11/12]
 
 **Database**
-- [ ] DB: Create `notifications` table with channel, status, template (Kael)
-- [ ] DB: Create `notification_preferences` table per user (Kael)
+- [x] DB: Create `notifications` table + `notification_preferences` + `telegram_links` + `push_subscriptions` (Kael)
+- [x] DB: Migrations 023-026 complete (Kael)
 
 **Backend**
-- [ ] Service: Multi-channel dispatcher (Email, SMS, Telegram, Web Push) (Kael)
-- [ ] Service: BullMQ job queue for async notification processing (Kael)
-- [ ] Service: Email provider integration (Kael)
-- [ ] Service: SMS provider integration (Kael)
-- [ ] Service: Telegram bot integration (@BotFather setup) (Kael → Zane)
-- [ ] Service: Web Push notification with service worker (Kael)
-- [ ] Service: Template engine for notification messages (Kael)
+- [x] Service: Multi-channel dispatcher (Email, SMS, Telegram, Web Push) (Kael)
+- [x] Service: BullMQ job queue — SendNotificationJob (concurrency 10, 3 retries) (Kael)
+- [x] Service: Email channel — AdonisJS Mail, degrades to stub if no SMTP (Kael)
+- [x] Service: SMS channel — Africa's Talking API, 160-char limit, graceful stub (Kael)
+- [x] Service: Telegram bot — link flow via Redis code, /start /link /unlink /bookings /track (Kael → Zane)
+- [x] Service: Web Push channel — web-push library, auto-deactivates on 410 (Kael)
+- [x] Service: Trip reminders cron job (BullMQ, every 30min, 2h before departure) (Kael)
 
 **Frontend**
-- [ ] UI: Notification preferences settings (Mila → Kael)
-- [ ] UI: In-app notification center with read/unread (Mila → Kael)
+- [x] UI: Notification preferences settings + Telegram link flow + Push opt-in (Mila → Kael)
+- [x] UI: NotificationBell in TopBar with live unread count + dropdown (Mila → Kael)
 
 **Sign-off**
 - [ ] Acceptance: All Skill 06 criteria validated (Aïcha)
 
 ---
 
-### Skill 16: USSD & SMS Booking [0/10]
+### Skill 16: USSD & SMS Booking [9/10]
 
 **Backend**
-- [ ] Service: USSD session manager (Redis-based state machine) (Kael → Zane)
-- [ ] Service: USSD menu flow builder (language selection → city → route → trip → booking) (Kael)
-- [ ] Service: SMS command parser (BOOK, STATUS, CANCEL, HELP) (Kael → Zane)
-- [ ] Service: City name fuzzy matching for SMS input (Kael)
-- [ ] API: USSD callback endpoint for telecom provider (Kael → Zane)
-- [ ] API: SMS webhook endpoint (Kael → Zane)
-- [ ] i18n: USSD/SMS messages in FR, EN, LN, SW (Kael)
+- [x] Service: USSD session manager (Redis-based state machine, 5-min TTL) (Kael → Zane)
+- [x] Service: USSD menu flow builder (language → city → route → trip → seat → booking) (Kael)
+- [x] Service: SMS command parser (BOOK, STATUS, CANCEL, HELP, CONFIRM) (Kael → Zane)
+- [x] Service: City name fuzzy matching for SMS input (Kael)
+- [x] API: USSD callback endpoint POST /api/v1/ussd/callback — returns text/plain CON/END (Kael → Zane)
+- [x] API: SMS inbound + delivery-report webhooks (Kael → Zane)
+- [x] i18n: USSD/SMS messages in FR, EN, LN, SW (Kael)
 
 **Testing**
 - [ ] Test: USSD flow end-to-end simulation (Zane)
-- [ ] Test: SMS command parsing with edge cases (Zane)
+- [x] Test: SMS command parsing with edge cases (Zane) — covered by unit tests in ussd_service
 
 **Sign-off**
 - [ ] Acceptance: All Skill 16 criteria validated (Aïcha)
 
 ---
 
-### Skill 19: WhatsApp Bot Integration [0/10]
+### Skill 19: WhatsApp Bot Integration [8/10]
 
 **Backend**
-- [ ] Service: WhatsApp Business API client (Kael → Zane)
-- [ ] Service: Conversational booking flow state machine (Kael)
-- [ ] Service: Natural language intent parsing for booking (Kael)
-- [ ] Service: Interactive message builder (buttons, lists) (Kael)
-- [ ] API: WhatsApp webhook handler with signature verification (Kael → Zane)
-- [ ] Service: Message template management (Meta-approved) (Kael)
-- [ ] Service: Support ticket escalation from WhatsApp (Kael)
+- [x] Service: WhatsApp Business API client — Meta Graph API v19.0, send_message helper (Kael → Zane)
+- [x] Service: Conversational booking flow state machine — Redis session 30-min TTL (Kael)
+- [x] Service: Natural language intent parsing — "Kin Lushi 15/03" multi-lang support (Kael)
+- [x] Service: Interactive message builder (text replies, button messages) (Kael)
+- [x] API: GET /api/v1/whatsapp/webhook — Meta challenge verification (Kael → Zane)
+- [x] API: POST /api/v1/whatsapp/webhook — responds 200 immediately, processes via setImmediate() (Kael → Zane)
+- [x] i18n: Messages in FR, EN, LN, SW via whatsapp_messages.ts (Kael)
 
 **Testing**
 - [ ] Test: Conversational flow end-to-end (Zane)
@@ -235,22 +251,26 @@
 
 ---
 
-### Skill 21: In-App Messaging [0/10]
+### Skill 21: In-App Messaging [10/11]
 
 **Database**
-- [ ] DB: Create `conversations` table with participants (Kael)
-- [ ] DB: Create `messages` table with content, sender, read_at (Kael)
+- [x] DB: Create `conversations` table (participants A/B, booking/trip FK, type, status, last_message_at) (Kael)
+- [x] DB: Create `messages` table (immutable, content moderation applied) (Kael)
+- [x] DB: Create `canned_responses` table (shortcut, JSON text multilingual, category) (Kael)
 
 **Backend**
-- [ ] API: Conversation CRUD (create, list, get messages) (Kael → Zane)
-- [ ] API: Send message with content moderation (filter phone/email) (Kael → Zane)
-- [ ] Service: System messages for trip events (delay, cancel, gate change) (Kael)
-- [ ] Service: Canned responses for agencies (Kael)
-- [ ] Service: Unread message count per user (Kael)
+- [x] API: Conversation CRUD (create, list, get messages paginated) — GET/POST /conversations (Kael → Zane)
+- [x] API: Send message POST /conversations/:id/messages — content moderation via content_filter.ts (Kael → Zane)
+- [x] API: Unread count GET /conversations/unread-count (Kael)
+- [x] API: Archive PUT /conversations/:id/archive (Kael)
+- [x] Service: Canned responses CRUD for agencies — /org/canned-responses (Kael)
+- [x] Service: Content filter — strips phone numbers and emails from messages (Kael → Zane)
 
 **Frontend**
-- [ ] UI: Chat interface with message bubbles and timestamps (Mila → Kael)
-- [ ] UI: Conversation list with unread badges (Mila → Kael)
+- [x] UI: Chat interface (ChatWindow) with message bubbles, timestamps, read receipts (Mila → Kael)
+- [x] UI: Conversation list (ConversationList) with unread badges, archive action (Mila → Kael)
+- [x] UI: CannedResponsePicker — shortcut search, locale-aware text insertion (Mila → Kael)
+- [x] UI: /dashboard/messages split-panel — mobile-responsive (list ↔ chat toggle) (Mila → Kael)
 
 **Sign-off**
 - [ ] Acceptance: All Skill 21 criteria validated (Aïcha)
@@ -659,9 +679,9 @@
 
 | Phase | Skills | Tasks | Done |
 |-------|--------|-------|------|
-| 1. Core Foundation | 01, 02 | 38 | 32 |
-| 2. Core Platform | 03, 04, 05 | 52 | 0 |
-| 3. Communication | 06, 16, 19, 21 | 42 | 0 |
+| 1. Core Foundation | 01, 02 | 40 | 40 ✅ |
+| 2. Core Platform | 03, 04, 05 | 52 | 49 |
+| 3. Communication | 06, 16, 19, 21 | 42 | 11 |
 | 4. Hardware & Logistics | 07, 22 | 22 | 0 |
 | 5. Operations & Quality | 08, 09, 10, 11 | 52 | 0 |
 | 6. Monetization | 12, 13, 14, 15 | 48 | 0 |

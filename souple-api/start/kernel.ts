@@ -11,6 +11,7 @@ server.errorHandler(() => import('#exceptions/handler'))
  * Note: Order matters — Shield must run before auth.
  */
 server.use([
+  () => import('#middleware/cors_middleware'),        // Must be first — handles OPTIONS preflights
   () => import('@adonisjs/core/bodyparser_middleware'),
   () => import('@adonisjs/shield/shield_middleware'),
   () => import('@adonisjs/auth/initialize_auth_middleware'),

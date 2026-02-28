@@ -4,11 +4,15 @@ import User from '#models/user'
 import Organization from '#models/organization'
 import OrganizationMember from '#models/organization_member'
 import { OtpService } from '#services/otp_service'
+import { EmailService } from '#services/email_service'
 import {
   sendOtpValidator,
   verifyOtpValidator,
+  sendRegistrationOtpValidator,
   registerValidator,
   loginValidator,
+  forgotPasswordValidator,
+  resetPasswordValidator,
 } from '#validators/auth_validator'
 import db from '@adonisjs/lucid/services/db'
 import string from '@adonisjs/core/helpers/string'
@@ -35,7 +39,7 @@ export default class AuthController {
     if (phone) {
       await OtpService.send(phone, code)
     } else if (email) {
-      await OtpService.sendEmail(email!, code)
+      await OtpService.sendEmail(email, code, purpose as 'login' | 'register' | 'password_reset')
     }
 
     return response.ok({
@@ -77,40 +81,89 @@ export default class AuthController {
   }
 
   /**
+   * POST /api/v1/auth/send-registration-otp
+   * Validates registration data and sends an OTP to the email.
+   * Does NOT create the user yet — that happens in /register after OTP verification.
+   */
+  async sendRegistrationOtp({ request, response }: HttpContext) {
+    const { email, phone, locale } = await request.validateUsing(sendRegistrationOtpValidator)
+
+    // Email uniqueness check (fail fast with clear message)
+    const existingEmail = await User.findBy('email', email)
+    if (existingEmail) {
+      return response.conflict({
+        success: false,
+        error: { code: 'E_CONFLICT', message: 'A user with this email already exists' },
+      })
+    }
+
+    // Phone uniqueness check
+    if (phone) {
+      const existingPhone = await User.findBy('phone', phone)
+      if (existingPhone) {
+        return response.conflict({
+          success: false,
+          error: { code: 'E_CONFLICT', message: 'A user with this phone number already exists' },
+        })
+      }
+    }
+
+    const code = OtpService.generate()
+    await OtpService.store(email, 'register', code)
+    await OtpService.sendEmail(email, code, 'register', locale ?? 'fr')
+
+    return response.ok({
+      success: true,
+      data: { message: 'OTP sent to email', expiresInMinutes: 5 },
+    })
+  }
+
+  /**
    * POST /api/v1/auth/register
-   * Registers a new user (OTP must have been sent and verified before this call).
+   * Step 2 of registration: verify OTP then create the user.
    */
   async register({ request, response }: HttpContext) {
     const data = await request.validateUsing(registerValidator)
 
-    // Re-verify OTP (prevent replay without going through send-otp)
-    const valid = await OtpService.verify(data.phone, 'register', data.otpCode)
+    // Verify email OTP before creating anything
+    const valid = await OtpService.verify(data.email, 'register', data.otpCode)
     if (!valid) {
       return response.unprocessableEntity({
         success: false,
-        error: { code: 'E_OTP_INVALID', message: 'Invalid or expired OTP code' },
+        error: { code: 'E_OTP_INVALID', message: 'Invalid or expired verification code' },
       })
     }
 
-    // Check phone uniqueness
-    const existingUser = await User.findBy('phone', data.phone)
-    if (existingUser) {
+    // Email uniqueness check (re-check in case of race)
+    const existingEmail = await User.findBy('email', data.email)
+    if (existingEmail) {
       return response.conflict({
         success: false,
-        error: { code: 'E_CONFLICT', message: 'A user with this phone number already exists' },
+        error: { code: 'E_CONFLICT', message: 'A user with this email already exists' },
       })
+    }
+
+    // Phone uniqueness check (only if provided)
+    if (data.phone) {
+      const existingPhone = await User.findBy('phone', data.phone)
+      if (existingPhone) {
+        return response.conflict({
+          success: false,
+          error: { code: 'E_CONFLICT', message: 'A user with this phone number already exists' },
+        })
+      }
     }
 
     const user = await db.transaction(async (trx) => {
       const newUser = await User.create(
         {
-          phone: data.phone,
           email: data.email,
+          phone: data.phone ?? null,
           firstName: data.firstName,
           lastName: data.lastName,
-          password: string.generateRandom(32), // Random password — OTP-based auth
+          password: data.password, // @beforeSave hook hashes it
           locale: data.locale ?? 'fr',
-          phoneVerifiedAt: DateTime.utc(),
+          ...(data.timezone ? { timezone: data.timezone } : {}),
           isActive: true,
         },
         { client: trx }
@@ -150,6 +203,14 @@ export default class AuthController {
       name: 'auth_token',
     })
 
+    // Load memberships so the frontend can set activeOrg immediately
+    await user.load('memberships', (q) => q.where('is_active', true).preload('organization'))
+
+    // Send welcome email (non-blocking — don't delay the response)
+    EmailService.sendWelcome(user.email!, user.firstName, user.locale ?? 'fr').catch((err) => {
+      console.error('[EmailService] Failed to send welcome email:', err.message)
+    })
+
     return response.created({
       success: true,
       data: {
@@ -165,34 +226,54 @@ export default class AuthController {
 
   /**
    * POST /api/v1/auth/login
-   * Login via phone+OTP or email+password.
+   * Three auth branches:
+   *   1. email/phone + password  → verifyCredentials
+   *   2. email/phone + otpCode   → OTP verification
+   *   3. Neither present         → 422
    */
   async login({ request, response }: HttpContext) {
     const data = await request.validateUsing(loginValidator)
 
+    const identifier = data.email ?? data.phone
+
+    if (!identifier) {
+      return response.unprocessableEntity({
+        success: false,
+        error: { code: 'E_VALIDATION', message: 'Either email or phone is required' },
+      })
+    }
+
+    if (!data.password && !data.otpCode) {
+      return response.unprocessableEntity({
+        success: false,
+        error: { code: 'E_VALIDATION', message: 'Either password or OTP code is required' },
+      })
+    }
+
     let user: User | null = null
 
-    // OTP-based login
-    if (data.phone && data.otpCode) {
-      const valid = await OtpService.verify(data.phone, 'login', data.otpCode)
+    // Branch 1: password-based login
+    if (data.password) {
+      try {
+        user = await User.verifyCredentials(identifier, data.password)
+      } catch {
+        user = null
+      }
+    }
+
+    // Branch 2: OTP-based login
+    if (!user && data.otpCode) {
+      const valid = await OtpService.verify(identifier, 'login', data.otpCode)
       if (!valid) {
         return response.unprocessableEntity({
           success: false,
           error: { code: 'E_OTP_INVALID', message: 'Invalid or expired OTP code' },
         })
       }
-      user = await User.findBy('phone', data.phone)
-    }
-
-    // Email+password login
-    if (data.email && data.password) {
-      user = await User.query().where('email', data.email).first()
-      if (user) {
-        const passwordValid = await user.verifyCredentials(data.email, data.password)
-        if (!passwordValid) {
-          user = null
-        }
-      }
+      // Find by email first, then phone
+      user = data.email
+        ? await User.findBy('email', data.email)
+        : await User.findBy('phone', data.phone!)
     }
 
     if (!user || !user.isActive) {
@@ -206,6 +287,9 @@ export default class AuthController {
       name: 'auth_token',
     })
 
+    // Load memberships so the frontend can set activeOrg immediately (no second round-trip needed)
+    await user.load('memberships', (q) => q.where('is_active', true).preload('organization'))
+
     return response.ok({
       success: true,
       data: {
@@ -216,6 +300,63 @@ export default class AuthController {
           expiresAt: token.expiresAt,
         },
       },
+    })
+  }
+
+  /**
+   * POST /api/v1/auth/forgot-password
+   * Sends a password-reset OTP to the user's email.
+   * Always returns 200 to avoid leaking account existence.
+   */
+  async forgotPassword({ request, response }: HttpContext) {
+    const { email } = await request.validateUsing(forgotPasswordValidator)
+
+    const user = await User.findBy('email', email)
+
+    if (user) {
+      const code = OtpService.generate()
+      await OtpService.store(email, 'password_reset', code)
+      await OtpService.sendEmail(email, code, 'password_reset', user.locale ?? 'fr')
+    }
+
+    return response.ok({
+      success: true,
+      data: {
+        message: 'If an account with this email exists, a reset code has been sent.',
+        expiresInMinutes: 5,
+      },
+    })
+  }
+
+  /**
+   * POST /api/v1/auth/reset-password
+   * Verifies the OTP and sets a new password.
+   */
+  async resetPassword({ request, response }: HttpContext) {
+    const { email, otpCode, newPassword } = await request.validateUsing(resetPasswordValidator)
+
+    const user = await User.findBy('email', email)
+    if (!user) {
+      return response.unprocessableEntity({
+        success: false,
+        error: { code: 'E_OTP_INVALID', message: 'Invalid or expired reset code' },
+      })
+    }
+
+    const valid = await OtpService.verify(email, 'password_reset', otpCode)
+    if (!valid) {
+      return response.unprocessableEntity({
+        success: false,
+        error: { code: 'E_OTP_INVALID', message: 'Invalid or expired reset code' },
+      })
+    }
+
+    user.password = newPassword // @beforeSave hook hashes it
+    await user.save()
+
+    return response.ok({
+      success: true,
+      data: { message: 'Password updated successfully' },
     })
   }
 

@@ -45,6 +45,7 @@ export default defineConfig({
     () => import('#start/routes'),
     () => import('#start/kernel'),
     () => import('#start/limiter'),
+    { file: () => import('#start/workers'), environment: ['web'] },
   ],
 
   /*
