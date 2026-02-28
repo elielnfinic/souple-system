@@ -212,4 +212,74 @@ router.group(() => {
     router.get('/loyalty/history', [() => import('#controllers/v1/loyalty_controller'), 'history'])
   }).use(middleware.auth())
 
+  // ─── Skill 16: USSD & SMS Channel ─────────────────────────────────────────────
+  router.post('/ussd/callback', [() => import('#controllers/v1/ussd_controller'), 'callback'])
+
+  // ─── Skill 17: Agent & Reseller Network ───────────────────────────────────────
+  router.group(() => {
+    router.post('/agents/register', [() => import('#controllers/v1/agents_controller'), 'register'])
+    router.get('/agents/me', [() => import('#controllers/v1/agents_controller'), 'show'])
+    router.get('/agents/me/earnings', [() => import('#controllers/v1/agents_controller'), 'earnings'])
+    router.get('/agents/me/agreements', [() => import('#controllers/v1/agents_controller'), 'agreements'])
+  }).use(middleware.auth())
+
+  // ─── Skill 18: Customer Support & Disputes ────────────────────────────────────
+  router.get('/faq', [() => import('#controllers/v1/faq_controller'), 'index'])
+  router.get('/faq/:id', [() => import('#controllers/v1/faq_controller'), 'show'])
+  router.group(() => {
+    router.get('/support-tickets', [() => import('#controllers/v1/support_tickets_controller'), 'index'])
+    router.post('/support-tickets', [() => import('#controllers/v1/support_tickets_controller'), 'store'])
+    router.get('/support-tickets/:id', [() => import('#controllers/v1/support_tickets_controller'), 'show'])
+    router.post('/support-tickets/:id/messages', [() => import('#controllers/v1/support_tickets_controller'), 'addMessage'])
+    router.put('/support-tickets/:id/status', [() => import('#controllers/v1/support_tickets_controller'), 'updateStatus'])
+    router.put('/support-tickets/:id/rate', [() => import('#controllers/v1/support_tickets_controller'), 'rate'])
+  }).use(middleware.auth())
+
+  // ─── Skill 20: Safety & Emergency Features ────────────────────────────────────
+  router.get('/safety/shared/:token', [() => import('#controllers/v1/safety_controller'), 'getSharedTrip'])
+  router.group(() => {
+    router.get('/safety/emergency-contacts', [() => import('#controllers/v1/safety_controller'), 'emergencyContacts'])
+    router.post('/safety/emergency-contacts', [() => import('#controllers/v1/safety_controller'), 'storeEmergencyContact'])
+    router.delete('/safety/emergency-contacts/:id', [() => import('#controllers/v1/safety_controller'), 'removeEmergencyContact'])
+    router.post('/safety/incidents', [() => import('#controllers/v1/safety_controller'), 'reportIncident'])
+    router.post('/safety/trip-shares', [() => import('#controllers/v1/safety_controller'), 'createTripShare'])
+  }).use(middleware.auth())
+
+  // ─── Skill 21: In-App Messaging ───────────────────────────────────────────────
+  router.group(() => {
+    router.get('/conversations', [() => import('#controllers/v1/messages_controller'), 'conversations'])
+    router.post('/conversations', [() => import('#controllers/v1/messages_controller'), 'createConversation'])
+    router.get('/conversations/:id/messages', [() => import('#controllers/v1/messages_controller'), 'getMessages'])
+    router.post('/conversations/:id/messages', [() => import('#controllers/v1/messages_controller'), 'sendMessage'])
+    router.put('/conversations/:id/read', [() => import('#controllers/v1/messages_controller'), 'markRead'])
+  }).use(middleware.auth())
+
+  // ─── Skill 22: Vehicle Maintenance & Compliance ───────────────────────────────
+  router.group(() => {
+    router.get('/vehicles/:vehicleId/documents', [() => import('#controllers/v1/vehicle_documents_controller'), 'index'])
+    router.post('/vehicles/:vehicleId/documents', [() => import('#controllers/v1/vehicle_documents_controller'), 'store'])
+    router.put('/vehicles/:vehicleId/documents/:id', [() => import('#controllers/v1/vehicle_documents_controller'), 'update'])
+    router.delete('/vehicles/:vehicleId/documents/:id', [() => import('#controllers/v1/vehicle_documents_controller'), 'destroy'])
+    router.get('/vehicles/:vehicleId/maintenance', [() => import('#controllers/v1/maintenance_records_controller'), 'index'])
+    router.post('/vehicles/:vehicleId/maintenance', [() => import('#controllers/v1/maintenance_records_controller'), 'store'])
+    router.put('/vehicles/:vehicleId/maintenance/:id', [() => import('#controllers/v1/maintenance_records_controller'), 'update'])
+  }).use(middleware.auth())
+
+  // ─── Skill 23: Corporate & B2B Accounts ───────────────────────────────────────
+  router.group(() => {
+    router.post('/corporate/register', [() => import('#controllers/v1/corporate_controller'), 'register'])
+    router.get('/corporate/me', [() => import('#controllers/v1/corporate_controller'), 'show'])
+    router.get('/corporate/me/members', [() => import('#controllers/v1/corporate_controller'), 'listMembers'])
+    router.post('/corporate/me/members', [() => import('#controllers/v1/corporate_controller'), 'addMember'])
+    router.delete('/corporate/me/members/:userId', [() => import('#controllers/v1/corporate_controller'), 'removeMember'])
+  }).use(middleware.auth())
+
+  // ─── Skill 24: Fraud Detection ────────────────────────────────────────────────
+  router.group(() => {
+    router.get('/fraud/risk/:userId', [() => import('#controllers/v1/fraud_controller'), 'getUserRisk'])
+    router.get('/fraud/blocked-entities', [() => import('#controllers/v1/fraud_controller'), 'listBlocked'])
+    router.post('/fraud/blocked-entities', [() => import('#controllers/v1/fraud_controller'), 'blockEntity'])
+    router.delete('/fraud/blocked-entities/:id', [() => import('#controllers/v1/fraud_controller'), 'unblock'])
+  }).use(middleware.auth())
+
 }).prefix('/api/v1')
