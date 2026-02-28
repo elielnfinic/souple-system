@@ -107,4 +107,31 @@ router.group(() => {
     }).use(middleware.auth())
   }).prefix('/vehicles')
 
+  // ─── Trips ───────────────────────────────────────────────────────────────────
+  router.group(() => {
+    // Public: search
+    router.get('/search', [() => import('#controllers/v1/trips_controller'), 'search'])
+
+    // Public read
+    router.get('/', [() => import('#controllers/v1/trips_controller'), 'index'])
+    router.get('/:id', [() => import('#controllers/v1/trips_controller'), 'show'])
+    router.get('/:id/availability', [() => import('#controllers/v1/trips_controller'), 'availability'])
+
+    // Auth required
+    router.group(() => {
+      router.post('/', [() => import('#controllers/v1/trips_controller'), 'store'])
+      router.put('/:id', [() => import('#controllers/v1/trips_controller'), 'update'])
+      router.delete('/:id', [() => import('#controllers/v1/trips_controller'), 'destroy'])
+      router.get('/:id/manifest', [() => import('#controllers/v1/trips_controller'), 'manifest'])
+    }).use(middleware.auth())
+  }).prefix('/trips')
+
+  // ─── Bookings ─────────────────────────────────────────────────────────────────
+  router.group(() => {
+    router.get('/', [() => import('#controllers/v1/bookings_controller'), 'index'])
+    router.post('/', [() => import('#controllers/v1/bookings_controller'), 'store'])
+    router.get('/:id', [() => import('#controllers/v1/bookings_controller'), 'show'])
+    router.put('/:id/cancel', [() => import('#controllers/v1/bookings_controller'), 'cancel'])
+  }).prefix('/bookings').use(middleware.auth())
+
 }).prefix('/api/v1')
