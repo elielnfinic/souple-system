@@ -31,7 +31,7 @@
 - [x] API: Standardized response envelope (success, error, pagination) (Kael)
 - [x] API: Rate limiting middleware on public endpoints (Kael → Zane)
 - [x] API: Shield security headers configuration (Kael → Zane)
-- [ ] API: CORS configuration (Kael → Zane)
+- [x] API: CORS configuration (Kael → Zane)
 
 **Core CRUD**
 - [x] CRUD: Users (profile, update, list by org) (Kael)
@@ -55,14 +55,14 @@
 - [x] Theme: Light/dark mode provider with system preference detection (Mila → Kael)
 - [x] Theme: CSS custom properties integration with Tailwind v4 (Mila → Kael)
 - [x] Layout: Responsive breakpoints (320px, 768px, 1024px, 1440px) (Mila → Kael)
-- [ ] Layout: Role-based density variants (spacious for passenger, dense for operator) (Mila → Kael)
+- [x] Layout: Role-based density variants (spacious for passenger, dense for operator) (Mila → Kael)
 
 **Component Library**
 - [x] Components: Buttons (primary, secondary, ghost, destructive + sizes) (Mila → Kael)
 - [x] Components: Form inputs (text, select, checkbox, radio, date picker) (Mila → Kael)
 - [x] Components: Cards, modals, dialogs, and drawers (Mila → Kael)
-- [ ] Components: Data tables with sorting, filtering, pagination (Mila → Kael)
-- [ ] Components: Toast notifications and alert banners (Mila → Kael)
+- [x] Components: Data tables with sorting, filtering, pagination (Mila → Kael)
+- [x] Components: Toast notifications and alert banners (Mila → Kael)
 - [x] Components: Loading skeletons and empty states (Mila → Kael)
 
 **Internationalization**
@@ -77,29 +77,29 @@
 
 ## Phase 2: Core Platform
 
-### Skill 03: Fleet & Vehicle Management [0/14]
+### Skill 03: Fleet & Vehicle Management [14/14]
 
 **Database**
-- [ ] DB: Create `vehicles` table with capacity, plate, make, model, year, status (Kael)
-- [ ] DB: Create `seat_layouts` table with JSON layout definition (Kael)
-- [ ] DB: Create `seat_classes` table (VIP, Economy, Business) with pricing multiplier (Kael)
-- [ ] DB: Create `vehicle_photos` table with S3 references (Kael)
+- [x] DB: Create `vehicles` table with capacity, plate, make, model, year, status (Kael)
+- [x] DB: Create `seat_layouts` table with JSON layout definition (Kael)
+- [x] DB: Create `seat_classes` table (VIP, Economy, Business) with pricing multiplier (Kael)
+- [x] DB: Create `vehicle_photos` table with S3 references (Kael)
 
 **Backend**
-- [ ] API: Vehicle CRUD endpoints with org-scoping (Kael → Zane)
-- [ ] API: Seat layout builder — save/load custom seat configurations (Kael → Zane)
-- [ ] API: Vehicle verification workflow (pending → verified → rejected) (Kael → Zane)
-- [ ] Service: S3 photo upload with size/type validation (Kael → Zane)
+- [x] API: Vehicle CRUD endpoints with org-scoping (Kael → Zane)
+- [x] API: Seat layout builder — save/load custom seat configurations (Kael → Zane)
+- [x] API: Vehicle verification workflow (pending → verified → rejected) (Kael → Zane)
+- [x] Service: S3 photo upload with size/type validation (Kael → Zane)
 
 **Frontend**
-- [ ] UI: Vehicle list with filters (status, type) and search (Mila → Kael)
-- [ ] UI: Vehicle detail/edit form (Mila → Kael)
-- [ ] UI: Interactive seat layout editor (drag-and-drop grid) (Mila → Kael)
-- [ ] UI: 2D seat visualization with class color coding (Mila → Kael)
-- [ ] UI: Photo upload gallery with preview (Mila → Kael)
+- [x] UI: Vehicle list with filters (status, type) and search (Mila → Kael)
+- [x] UI: Vehicle detail/edit form (Mila → Kael)
+- [x] UI: Interactive seat layout editor (drag-and-drop grid) (Mila → Kael)
+- [x] UI: 2D seat visualization with class color coding (Mila → Kael)
+- [x] UI: Photo upload gallery with preview (Mila → Kael)
 
 **Sign-off**
-- [ ] Acceptance: All Skill 03 criteria validated (Aïcha)
+- [x] Acceptance: All Skill 03 criteria validated (Aïcha)
 
 ---
 
