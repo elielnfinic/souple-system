@@ -74,4 +74,37 @@ router.group(() => {
     }).use([middleware.auth(), middleware.tenant()])
   }).prefix('/routes')
 
+  // ─── Seat Classes (public read, admin write) ─────────────────────────────────
+  router.group(() => {
+    router.get('/', [() => import('#controllers/v1/seat_classes_controller'), 'index'])
+    router.get('/:id', [() => import('#controllers/v1/seat_classes_controller'), 'show'])
+  }).prefix('/seat-classes')
+
+  router.group(() => {
+    router.post('/', [() => import('#controllers/v1/seat_classes_controller'), 'store'])
+    router.put('/:id', [() => import('#controllers/v1/seat_classes_controller'), 'update'])
+    router.delete('/:id', [() => import('#controllers/v1/seat_classes_controller'), 'destroy'])
+  }).prefix('/seat-classes').use(middleware.auth())
+
+  // ─── Vehicles ────────────────────────────────────────────────────────────────
+  router.group(() => {
+    router.get('/', [() => import('#controllers/v1/vehicles_controller'), 'index'])
+    router.get('/:id', [() => import('#controllers/v1/vehicles_controller'), 'show'])
+
+    router.group(() => {
+      router.post('/', [() => import('#controllers/v1/vehicles_controller'), 'store'])
+      router.put('/:id', [() => import('#controllers/v1/vehicles_controller'), 'update'])
+      router.delete('/:id', [() => import('#controllers/v1/vehicles_controller'), 'destroy'])
+      router.put('/:id/verify', [() => import('#controllers/v1/vehicles_controller'), 'verify'])
+
+      // Seat layouts nested under vehicles
+      router.get('/:vehicleId/seat-layouts', [() => import('#controllers/v1/seat_layouts_controller'), 'index'])
+      router.post('/:vehicleId/seat-layouts', [() => import('#controllers/v1/seat_layouts_controller'), 'store'])
+      router.get('/:vehicleId/seat-layouts/:id', [() => import('#controllers/v1/seat_layouts_controller'), 'show'])
+      router.put('/:vehicleId/seat-layouts/:id', [() => import('#controllers/v1/seat_layouts_controller'), 'update'])
+      router.delete('/:vehicleId/seat-layouts/:id', [() => import('#controllers/v1/seat_layouts_controller'), 'destroy'])
+      router.put('/:vehicleId/seat-layouts/:id/default', [() => import('#controllers/v1/seat_layouts_controller'), 'setDefault'])
+    }).use(middleware.auth())
+  }).prefix('/vehicles')
+
 }).prefix('/api/v1')
